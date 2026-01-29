@@ -26,7 +26,17 @@ export async function GET(req) {
         eq(attendances.date, date)
       )
     })
-    return NextResponse.json(attendance || null)
+
+    if(attendance == null){
+      return NextResponse.json({message: "Belum check-in"}, {status: 400})
+    }
+
+    // console.log("ATTENDANCE:", attendance)
+    if(attendance?.checkIn === null){
+      return NextResponse.json(attendance || null)
+    }else{
+      return NextResponse.json({message: "Sudah check-in"}, {status: 400})
+    }
   }catch (error) {
     console.error("GET ATTENDANCE ERROR:", error)
     return NextResponse.json({ message: "Gagal mengambil data" }, { status: 500 })

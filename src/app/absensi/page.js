@@ -42,25 +42,30 @@ export default function AttendancePage() {
   /* =======================
      FETCH ATTENDANCE STATUS
   ======================== */
-  const fetchAttendanceStatus = useCallback(async () => {
-    if (!employee?.id) return
+ const fetchAttendanceStatus = useCallback(async () => {
+  if (!employee?.id) return
 
-    try {
-      const [checkInRes, checkOutRes] = await Promise.all([
-        fetch(`/api/attendance/checkin?employeeId=${employee.id}&date=${today}`),
-        fetch(`/api/attendance/checkout?employeeId=${employee.id}&date=${today}`)
-      ])
+  try {
+    const [checkInRes, checkOutRes] = await Promise.all([
+      fetch(`/api/attendance/checkin?employeeId=${employee.id}&date=${today}`),
+      fetch(`/api/attendance/checkout?employeeId=${employee.id}&date=${today}`)
+    ])
 
-      setHasCheckedIn(checkInRes.ok)
-      if (checkOutRes.ok) {
-      setHasCheckedOut(false)
-      } else {
-        setHasCheckedOut(true)
-      }
-    } catch (err) {
-      console.error(err)
-    }
-  }, [employee, today])
+    // CHECK-IN
+    // 200 = belum check-in
+    // 400 = sudah check-in
+    setHasCheckedIn(!checkInRes.ok)
+
+    // CHECK-OUT
+    // 200 = belum check-out
+    // 400 = sudah check-out
+    setHasCheckedOut(!checkOutRes.ok)
+
+  } catch (err) {
+    console.error(err)
+  }
+}, [employee, today])
+
 
   /* =======================
      EFFECTS

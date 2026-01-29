@@ -23,7 +23,11 @@ export async function GET(req) {
       )
     })
 
-    if(attendance.checkOut === null){
+    if(attendance == null){
+      return NextResponse.json({message: "Belum check-out"}, {status: 400})
+    }
+
+    if(attendance?.checkOut === null){
       return NextResponse.json(attendance || null)
     }
     return NextResponse.json({message: "Sudah check-out"}, {status: 400})
