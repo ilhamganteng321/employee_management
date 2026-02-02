@@ -11,3 +11,54 @@ export const ATTENDANCE_TYPES = {
   CHECKIN: 'checkin',
   CHECKOUT: 'checkout'
 }
+
+export const attendanceFields = [
+  {
+    name: 'employeeId',
+    label: 'Karyawan',
+    type: 'select',
+    required: true,
+    options: [] // Isi dengan data karyawan dari API
+  },
+  {
+    name: 'date',
+    label: 'Tanggal',
+    type: 'date',
+    required: true
+  },
+  {
+    name: 'checkIn',
+    label: 'Waktu Check In',
+    type: 'time',
+    required: true
+  },
+  {
+    name: 'checkOut',
+    label: 'Waktu Check Out',
+    type: 'time',
+    required: false
+  },
+  {
+    name: 'status',
+    label: 'Status',
+    type: 'select',
+    required: true,
+    options: [
+      { value: 'present', label: 'Hadir' },
+      { value: 'absent', label: 'Tidak Hadir' }
+    ]
+  },
+  {
+    name: 'isLate',
+    label: 'Terlambat',
+    type: 'checkbox',
+    required: false
+  },
+  {
+    name: 'workMinutes',
+    label: 'Durasi Kerja (menit)',
+    type: 'number',
+    required: true,
+    validation: { min: 0, max: 1440 }
+  }
+];

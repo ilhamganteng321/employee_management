@@ -23,14 +23,14 @@ export async function GET(req) {
       )
     })
 
-    if(attendance == null){
+
+
+    if(!attendance && !attendance?.checkOut){
       return NextResponse.json({message: "Belum check-out"}, {status: 400})
+    }else{
+      return NextResponse.json({status: 200})
     }
 
-    if(attendance?.checkOut === null){
-      return NextResponse.json(attendance || null)
-    }
-    return NextResponse.json({message: "Sudah check-out"}, {status: 400})
   }catch (error) {
     console.error("GET ATTENDANCE ERROR:", error)
     return NextResponse.json({ message: "Gagal mengambil data" }, { status: 500 })

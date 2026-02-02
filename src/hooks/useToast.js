@@ -1,5 +1,5 @@
 // hooks/useToast.js
-import { useToast as useToastContext } from '@/app/providers/ToastProvider';
+import { useToast as useToastContext } from '@/app/(dashboard)/providers/ToastProvider';
 
 export function useToast() {
   const toast = useToastContext();

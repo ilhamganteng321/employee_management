@@ -7,11 +7,13 @@ import AttendanceButton from '@/components/AttendanceButton'
 import AttendanceStatus from '@/components/AttendanceStatus'
 import { useToast } from '@/hooks/useToast'
 import { useAuthStore } from '@/store/useAuthStore'
+import { useRouter } from 'next/navigation'
 
 export default function AttendancePage() {
   const { success, error } = useToast()
   const { user } = useAuthStore()
 
+  const route =  useRouter();
   const [time, setTime] = useState('')
   const [currentLocation, setCurrentLocation] = useState(null)
 
@@ -54,12 +56,18 @@ export default function AttendancePage() {
     // CHECK-IN
     // 200 = belum check-in
     // 400 = sudah check-in
-    setHasCheckedIn(!checkInRes.ok)
+    if(checkInRes.ok){
+      setHasCheckedIn(true)
+    }
 
     // CHECK-OUT
     // 200 = belum check-out
     // 400 = sudah check-out
-    setHasCheckedOut(!checkOutRes.ok)
+    if(checkOutRes.ok){
+      setHasCheckedOut(true)
+    }else{
+      setHasCheckedIn(false)
+    }
 
   } catch (err) {
     console.error(err)
@@ -188,6 +196,7 @@ export default function AttendancePage() {
             <li>• Check-in 1x per hari</li>
             <li>• Check-out setelah check-in</li>
             <li>• Jam masuk: {OFFICE_START} WIB</li>
+            <button className="text-blue-600 underline p-0 m-0 bg-transparent border-0 cursor-pointer" onClick={() => route.push('/report/absensi')}>Lihat Semua Absensi</button>
           </ul>
         </div>
 

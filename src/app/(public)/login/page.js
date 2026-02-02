@@ -72,7 +72,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-300 to-purple-300 flex flex-col items-center justify-center p-4 rounded-2xl">
+    <div className="min-h-screen bg-gradient-to-br from-blue-300 to-purple-300 flex flex-col items-center justify-center p-4">
 
       {showdialog && (
         <Dialog

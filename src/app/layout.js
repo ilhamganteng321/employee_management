@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google"
 import "./globals.css"
 import HRISLayout from "@/components/layout/layout";
-import ToastProvider from "./providers/ToastProvider";
+import ToastProvider from "./(dashboard)/providers/ToastProvider";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -15,7 +15,8 @@ export default function RootLayout({ children }) {
     <html lang="id">
       <body className={inter.className}>
         <ToastProvider>
-        <HRISLayout>{children}</HRISLayout>;
+        {/* <HRISLayout>{children}</HRISLayout>; */}
+        { children }
         </ToastProvider>
       </body>
     </html>

@@ -35,3 +35,43 @@ export async function GET() {
     )
   }
 }
+
+export async function POST(req) {
+  const { employeeId, date, checkIn, checkOut, status, isLate, workMinutes } = await req.json()
+  
+  if(!employeeId || !date || !checkIn || !status || !isLate || !workMinutes) {
+    return NextResponse.json(
+      { message: "Data absensi tidak lengkap" },
+      { status: 400 }
+    )
+  }
+
+  try {
+    const result = await db.insert(attendances).values({
+      employeeId,
+      date,
+      checkIn,
+      checkOut,
+      status,
+      isLate,
+      workMinutes
+    }).returning()
+
+    const resultData = result[0]
+
+    if (!resultData) {
+      return NextResponse.json(
+        { message: "Gagal membuat data absensi" },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ data: resultData }, { status: 201 })
+  } catch (error) {
+    console.error("CREATE ATTENDANCE ERROR:", error)
+    return NextResponse.json(
+      { message: "Gagal membuat data absensi" },
+      { status: 500 }
+    )
+  }
+}

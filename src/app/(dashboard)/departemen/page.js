@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { FiPlus, FiEdit2, FiTrash2, FiHome, FiBriefcase } from 'react-icons/fi';
 import { useToast } from '@/hooks/useToast';
 import Dialog from '@/components/dialog/Dialog';
+import { useAuthStore } from '@/store/useAuthStore';
 
 export default function DepartemenPage() {
   const [activeTab, setActiveTab] = useState('departemen'); // 'departemen' atau 'position'
@@ -13,6 +14,7 @@ export default function DepartemenPage() {
   const [showDialog, setShowDialog] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [formData, setFormData] = useState({ name: '' });
+  const { user } = useAuthStore();
   
   const { success, error } = useToast();
 
@@ -21,6 +23,7 @@ export default function DepartemenPage() {
     fetchData();
   }, [activeTab]);
 
+  
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -120,6 +123,16 @@ export default function DepartemenPage() {
   const currentData = activeTab === 'departemen' ? departments : positions;
   const title = activeTab === 'departemen' ? 'Departemen' : 'Posisi';
   const icon = activeTab === 'departemen' ? <FiHome /> : <FiBriefcase />;
+
+  if(user?.role === 'employe'){
+    return (
+      <div className="flex flex-col items-center justify-center h-full py-20">
+        <FiHome className="w-16 h-16 text-gray-400 mb-4" />
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Akses Ditolak</h2>
+        <p className="text-gray-600">Anda tidak memiliki izin untuk mengakses halaman ini.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

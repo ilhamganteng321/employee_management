@@ -15,28 +15,37 @@ export async function GET(_, { params }) {
 
 export async function PUT(req, { params }) {
     const { id } = await params;
-    if(!id){
-        return NextResponse({message:"Id harap di isi"})
+    if (!id) {
+        return NextResponse.json({ message: "Id harap di isi" })
     }
-    const body = await req.json();
-    await db
-        .update(users)
-        .set(body)
-        .where(eq(users.id, id));
 
-    return NextResponse.json({ message: "Data Pengguna diupdate" });
+    try {
+        const body = await req.json();
+        await db
+            .update(users)
+            .set(body)
+            .where(eq(users.id, id));
+
+        return NextResponse.json({ message: "Data Pengguna diupdate" });
+    } catch (e) {
+        console.log("error server", e)
+        return NextResponse.json({ message: "internal error server" })
+    }
 }
 
-export async function DELETE(req, {params}){
-    const {id} = await params;
-    if(!id){
-        return NextResponse({message:"Id harap di isi"})
+export async function DELETE(req, { params }) {
+    const { id } = await params;
+    if (!id) {
+        return NextResponse.json({ message: "Id harap di isi" })
+    }
+    try {
+        await db
+            .delete(users)
+            .where(eq(users.id, id))
+        return NextResponse.json({ message: "Data Pengguna berhasil dihapus" })
+    } catch (e) {
+        console.log("error server", e)
+        return NextResponse.json({ message: "internal error server" })
     }
 
-    const body = await req.json();
-    await db
-        .delete(users)
-        .where(eq(users.id, id))
-    
-    return NextResponse.json({ message: "Data Pengguna berhasil dihapus"})
 }

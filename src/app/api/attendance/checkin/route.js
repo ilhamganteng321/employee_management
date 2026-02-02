@@ -27,15 +27,13 @@ export async function GET(req) {
       )
     })
 
-    if(attendance == null){
-      return NextResponse.json({message: "Belum check-in"}, {status: 400})
-    }
+    console.log("attendance ", attendance?.checkIn)
+    console.log("attendance ", attendance)
 
-    // console.log("ATTENDANCE:", attendance)
-    if(attendance?.checkIn === null){
-      return NextResponse.json(attendance || null)
+    if(!attendance && !attendance?.checkIn){
+      return NextResponse.json({message: "Belum check-in"}, {status: 400})
     }else{
-      return NextResponse.json({message: "Sudah check-in"}, {status: 400})
+      return NextResponse.json({status:200})
     }
   }catch (error) {
     console.error("GET ATTENDANCE ERROR:", error)

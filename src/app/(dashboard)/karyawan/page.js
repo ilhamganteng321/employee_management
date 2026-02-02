@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/useToast';
 import Dialog from '@/components/dialog/Dialog';
+import { FiHome } from 'react-icons/fi';
+import { useAuthStore } from '@/store/useAuthStore';
 
 export default function EmployeesPage() {
   const [employees, setEmployees] = useState([]);
@@ -25,6 +27,7 @@ export default function EmployeesPage() {
   
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const { user } = useAuthStore();
   
   const { success, error } = useToast();
 
@@ -40,6 +43,8 @@ export default function EmployeesPage() {
   useEffect(() => {
     fetchAllData();
   }, []);
+
+  
 
   const fetchAllData = async () => {
     setIsLoading(true);
@@ -212,6 +217,16 @@ export default function EmployeesPage() {
       (editingEmployee && user.id === editingEmployee.userId)
     );
   };
+
+  if(user?.role === 'employe'){
+      return (
+        <div className="flex flex-col items-center justify-center h-full py-20">
+          <FiHome className="w-16 h-16 text-gray-400 mb-4" />
+          <h2 className="text-2xl font-semibold text-gray-900 mb-2">Akses Ditolak</h2>
+          <p className="text-gray-600">Anda tidak memiliki izin untuk mengakses halaman ini.</p>
+        </div>
+      );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 lg:p-6">

@@ -14,19 +14,20 @@ export async function POST(req){
   const body = await req.json();
 
   if(!body){
-    return NextResponse(
+    return NextResponse.json(
       {message:"Isi semua kolom"},
       {status: 403}
     )
   }
 
   if(!body.name){
-    return NextResponse(
+    return NextResponse.json(
       {message: "Isi nama"},
       {status: 403}
     )
   }
 
   await db.insert(users).values(body);
-  return NextResponse({message: "Pengguna baru telah ditambahkan"})
+  return NextResponse.json({message: "Pengguna baru telah ditambahkan"})
+
 }
