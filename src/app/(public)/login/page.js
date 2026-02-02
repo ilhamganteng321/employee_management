@@ -89,6 +89,10 @@ export default function LoginPage() {
               <strong>HR</strong><br />
               Email: dinda@gmail.com<br />
               Password: 123000
+              <br /><br />
+              <strong>Admin</strong><br />
+              Email: putri@gmail.com<br />
+              Password: admin01
             </>
           }
           onClose={() => setShowDialog(false)}
@@ -100,7 +104,7 @@ export default function LoginPage() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-2">
           <FiMonitor className="text-blue-600" />
-          HRIS Mini
+          HRIS Mini(Ham)
         </h1>
         <p className="text-gray-600">Sistem Manajemen Karyawan</p>
       </div>

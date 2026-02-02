@@ -42,13 +42,13 @@ export default function HRISLayout({ children }) {
       name: "Departemen",
       href: "/departemen",
       icon: BuildingOfficeIcon,
-      roles: ["admin", "hr"],
+      roles: ["admin"],
     },
     {
       name: "Pengguna",
       href: "/users",
       icon: Users2,
-      roles: ["admin", "hr"],
+      roles: ["admin"],
     },
     {
       name: "Absensi",
@@ -60,7 +60,7 @@ export default function HRISLayout({ children }) {
       name: "Penggajian",
       href: "/penggajian",
       icon: BanknotesIcon,
-      roles: ["admin"],
+      roles: ["admin", "hr"],
     },
   ];
 
@@ -115,7 +115,7 @@ export default function HRISLayout({ children }) {
             <UsersIcon className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-lg font-bold">HRIS Mini</h1>
+            <h1 className="text-lg font-bold">HRIS Mini(Ham)</h1>
             <p className="text-xs text-slate-400">HR Manager</p>
           </div>
         </div>
