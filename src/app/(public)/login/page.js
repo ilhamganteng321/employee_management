@@ -183,7 +183,7 @@ export default function LoginPage() {
           </button>
 
           {/* Demo Info */}
-          <div onClick={() => setShowDialog(true)} className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200 text-underline text-blue-700 text-center cursor-pointer">
+          <div onClick={() => setShowDialog(true)} className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200 underline text-blue-700 text-center cursor-pointer">
             <p className="text-sm text-blue-700 text-center">
               <strong>Demo:</strong> gunakan akun berikut
             </p>
