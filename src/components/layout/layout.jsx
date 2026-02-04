@@ -58,7 +58,7 @@ export default function HRISLayout({ children }) {
     },
     {
       name: "Penggajian",
-      href: "/penggajian",
+      href: "/salaries",
       icon: BanknotesIcon,
       roles: ["admin", "hr"],
     },

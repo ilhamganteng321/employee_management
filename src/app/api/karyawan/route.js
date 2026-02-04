@@ -1,16 +1,25 @@
 import { db } from "@/db";
-import { employees } from "@/db/schema";
+import { employees, positions, users } from "@/db/schema";
 import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 
 export async function GET() {
-  const data = await db.select().from(employees);
+  const data = await db.select({
+    id: employees.id,
+    userId: employees.userId,
+    departmentId: employees.departmentId,
+    positionId : employees.positionId,
+    phone: employees.phone,
+    address: employees.address,
+    employeeName: users.name
+  }).from(employees)
+  .innerJoin(users, eq(employees.userId, users.id));
   return NextResponse.json(data);
 }
 
-export async function POST( req) {
+export async function POST(req) {
   const body = await req.json();
-  
+
   if (!body.userId) {
     return NextResponse.json(
       { message: "user id wajib diisi" },

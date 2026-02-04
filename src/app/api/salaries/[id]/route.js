@@ -10,8 +10,10 @@ export async function GET(_, { params }) {
       .select()
       .from(salaries)
       .where(eq(salaries.id, id));
+    
+    const result = data[0]
 
-    return NextResponse.json(data[0]);
+    return NextResponse.json(result);
   } catch (err) {
     return NextResponse.json(
       { message: "Gagal mengambil detail gaji", error: err.message },
