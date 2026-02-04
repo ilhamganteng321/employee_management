@@ -272,11 +272,11 @@ export default function AttendancePage() {
                                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                                 Live Update
                             </button>
-                            <button
+                            {/* <button
                                 onClick={handleAdd}
                                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">
                                 + Tambah Data
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>
@@ -401,9 +401,9 @@ export default function AttendancePage() {
                                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                         Catatan
                                     </th>
-                                    <th className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
+                                    {/* <th className="px-6 py-4 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                                         Aksi
-                                    </th>
+                                    </th> */}
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
@@ -455,7 +455,7 @@ export default function AttendancePage() {
                                                 ? "Terlambat"
                                                 : "-"}
                                         </td>
-                                        <td className="px-6 py-4">
+                                        {/* <td className="px-6 py-4">
                                             <div className="flex items-center justify-center gap-2">
                                                 <button
                                                     onClick={() => handleView(item)}
@@ -476,7 +476,7 @@ export default function AttendancePage() {
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>
                                             </div>
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 ))}
                             </tbody>
