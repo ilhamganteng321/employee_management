@@ -97,7 +97,7 @@ export default function Home() {
                 <a href="#home" className="text-gray-700 hover:text-blue-600 font-medium py-2">Beranda</a>
                 <a href="#features" className="text-gray-700 hover:text-blue-600 font-medium py-2">Fitur</a>
                 <a href="#benefits" className="text-gray-700 hover:text-blue-600 font-medium py-2">Manfaat</a>
-                <a href="#login" className="text-gray-700 hover:text-blue-600 font-medium py-2">Login</a>
+                <a href="/login" className="text-gray-700 hover:text-blue-600 font-medium py-2">Login</a>
               </div>
             </div>
           )}
